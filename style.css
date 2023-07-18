@@ -1,6 +1,11 @@
 .grid{
     display: flex;
     flex-wrap: wrap;
-    height: 400px;
-    width: 300px;
+    width: 600px;
+    height: 700px; 
+    flex-direction: row;
+    background-color: aquamarine;
+    align-items: center ;
+    margin: 10px;
+    
 }
