@@ -2,6 +2,8 @@ let playerLives = 10;
 const section = document.querySelector("section");
 const button = document.querySelector("button");
 const playerLivesCount = document.querySelector("span");
+let matched=[];
+
 //link text
 playerLivesCount.textContent = playerLives;
 
@@ -50,12 +52,11 @@ const cardGenerator = () => {
     const card = document.createElement("div");
     const face = document.createElement("img");
     const back = document.createElement("div");
-    back.classList = "back";
     card.classList = "card";
     face.classList = "face";
+    back.classList = "back";
 
     //attach the info/image to the cards
-
     face.src = item.imgSrc;
     card.setAttribute("name", item.name); // attach name to the card
 
@@ -64,59 +65,71 @@ const cardGenerator = () => {
     card.appendChild(face);
     card.appendChild(back);
 
-    card.addEventListener("click", handleClick);
+card.addEventListener("click", handleClick);
+
+   
   });
 };
 
 function handleClick(e) {
-  this.classList.toggle("toggleCard");
-  checkCards(e);
-}
-
-// check cards
-const checkCards = (e) => {
-  const clickedCard = e.target; //when we click on the target
-  const toggleCard = document.querySelectorAll(".toggleCard");
-  const flippedCards = document.querySelectorAll(".flipped");
-  clickedCard.classList.add("flipped"); //adding flipped to clickedcard
-  console.log(flippedCards);
-
-  console.log(clickedCard);
-
-  //logic of the Game
-  if (flippedCards.length === 2) {
-    if (
-      flippedCards[0].getAttribute("name") ===
-      flippedCards[1].getAttribute("name")
-    ) {
-      console.log("Matched!");
-      flippedCards.forEach((card) => {
-        card.classList.add("disable"); //disable the clicker
-        card.classList.remove('flipped');
-        // once it's fipped and matched, we cant click on it anymore
-        // card.style.pointerEvents='none';
-        // console.log(flippedCards[0]);
-      });
+    this.classList.toggle("toggleCard");
+    checkCards(e);
+  }
+  
+  
+  // check cards
+  const checkCards = (e) => {
+      console.log(e);
+      const clickedCard = e.target; //when we click on the target
+      clickedCard.classList.add("flipped"); //adding flipped to clickedcard
+      const flippedCards = document.querySelectorAll(".flipped");
+      const toggleCard = document.querySelectorAll(".toggleCard");
+  
       
-    } else {
-      console.log("Try Again!");
-      flippedCards.forEach((card) => {
-        card.classList.remove("flipped");
-        card.classList.remove("toggleCard");
-        // setTimeout(() => card.classList.remove("toggleCard"));
-      });
-      playerLives--;
-      playerLivesCount.textContent = playerLives;
-      if (playerLives === 0) {
-        restart("you LOST! Try Again!");
+      console.log(clickedCard);
+      console.log(flippedCards);
+  
+    
+      //logic of the Game
+    if (flippedCards.length === 2) {
+      if (
+        flippedCards[0].getAttribute("name") ===
+        flippedCards[1].getAttribute("name")
+      ) {
+        console.log("Matched!");
+        flippedCards.forEach((card) => {
+          card.classList.add("disable"); //disable the clicker
+          card.classList.remove('flipped');
+          // once it's fipped and matched, we cant click on it anymore
+          // console.log(flippedCards[0]);
+        })
+        
+      } else {
+        console.log("Try Again!");
+        flippedCards.forEach((card) => {
+          card.classList.remove("flipped");
+        //   card.classList.remove("toggleCard");
+          setTimeout(() => card.classList.remove("toggleCard"),1000);
+        });
+        playerLives--;
+        playerLivesCount.textContent = playerLives;
+        if (playerLives === 0) {
+          restart("you LOST! Try Again!");
+        }
       }
     }
+  
+  
+  
+    //Check to see if you won the Game
+    if (toggleCard.length === 16) {
+      restart("YOU WON!");
+    }
   }
-  //Check to see if you won the Game
-  if (toggleCard.length === 16) {
-    restart("YOU WON!");
-  }
-};
+  
+  
+
+
 //restart
 const restart = (text) => {
   let cardData = randomize();
@@ -125,10 +138,12 @@ const restart = (text) => {
   cardData.forEach((item, index) => {
     cards[index].classList.remove("toggleCard");
     //randomize once it's lost
-
+    setTimeout(()=>{
     cards[index].style.pointerEvents = "all"; //add pointevent back
     faces[index].src = item.imgSrc; //change image
     cards[index].setAttribute("name", item.name); //add attribute
+    section.style.pointerEvents='all';},1000);
+
   });
   playerLives = 10;
   playerLivesCount.textContent = playerLives;

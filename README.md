@@ -9,7 +9,7 @@ Game build using the Dom
 
 
 ## Challenge
-
+once i click the second image, i can reclick on it even though the clicker was disabled. dont ask my how i fixed. i played with the code for 1 day! 
 
 ## Resources 
     Youtube:
