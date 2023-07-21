@@ -98,9 +98,10 @@ function handleClick(e) {
       ) {
         console.log("Matched!");
         flippedCards.forEach((card) => {
-          card.classList.add("disable"); //disable the clicker
-          card.classList.remove('flipped');
-          // once it's fipped and matched, we cant click on it anymore
+        //   card.classList.add("disable"); //disable the clicker
+        card.style.pointerEvents='none'; // disable the clicker
+        // once it's fipped and matched, we cant click on it anymore
+        card.classList.remove('flipped');
           // console.log(flippedCards[0]);
         })
         
@@ -135,9 +136,10 @@ const restart = (text) => {
   let cardData = randomize();
   let faces = document.querySelectorAll(".face");
   let cards = document.querySelectorAll(".card");
+  section.style.pointerEvents='none';
   cardData.forEach((item, index) => {
     cards[index].classList.remove("toggleCard");
-    //randomize once it's lost
+    //randomize 
     setTimeout(()=>{
     cards[index].style.pointerEvents = "all"; //add pointevent back
     faces[index].src = item.imgSrc; //change image
