@@ -1,14 +1,15 @@
-const section = document.querySelector("section");
-const playerLivesCount = document.querySelector("span");
 let playerLives = 10;
+const section = document.querySelector("section");
 const button = document.querySelector("button");
+const playerLivesCount = document.querySelector("span");
+//link text
+playerLivesCount.textContent = playerLives;
 
+//button of restarting 
 button.addEventListener("click", function (e) {
   restart("Restarting!");
 });
 
-//link text
-playerLivesCount.textContent = playerLives;
 
 //we generate card options
 const getData = () => [
@@ -82,7 +83,7 @@ const checkCards = (e) => {
 
   console.log(clickedCard);
 
-  //logic
+  //logic of the Game
   if (flippedCards.length === 2) {
     if (
       flippedCards[0].getAttribute("name") ===
@@ -101,8 +102,8 @@ const checkCards = (e) => {
       console.log("Try Again!");
       flippedCards.forEach((card) => {
         card.classList.remove("flipped");
-        // card.classList.remove("toggleCard");
-        setTimeout(() => card.classList.remove("toggleCard"));
+        card.classList.remove("toggleCard");
+        // setTimeout(() => card.classList.remove("toggleCard"));
       });
       playerLives--;
       playerLivesCount.textContent = playerLives;

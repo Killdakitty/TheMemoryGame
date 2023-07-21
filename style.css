@@ -47,7 +47,7 @@ section{
     position: absolute;
     /* unclickerable */
     pointer-events: none; 
-    transform: scaleX(-1)
+    transform: scaleX(-1);
 
     
 }
