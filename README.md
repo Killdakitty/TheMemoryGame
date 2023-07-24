@@ -3,6 +3,9 @@
 2.You match the cards.
 3.After 10 lifes, you lose! 
 
+## Live Game Play
+https://killdakitty.github.io/TheMemoryGame/
+
 
 ## Tech Stack
     1. HTML
