@@ -59,9 +59,11 @@ const cardGenerator = () => {
     face.src = item.imgSrc;
     card.setAttribute("name", item.name); // attach name to the card
 
-    //attach the cards to the section
+    //attach the card to the section
     section.appendChild(card);
+    // attach the face to card
     card.appendChild(face);
+    // attach the back to card
     card.appendChild(back);
 
     card.addEventListener("click", handleClick);
@@ -136,9 +138,12 @@ const restart = (text) => {
     cards[index].classList.remove("toggleCard");
     //randomize
     setTimeout(() => {
-      cards[index].style.pointerEvents = "all"; //add pointevent back
-      faces[index].src = item.imgSrc; //change image
-      cards[index].setAttribute("name", item.name); //add attribute
+       //add pointevent back
+      cards[index].style.pointerEvents = "all";
+       //change image
+      faces[index].src = item.imgSrc;
+      //add attribute
+      cards[index].setAttribute("name", item.name); 
       section.style.pointerEvents = "all";
     }, 1000);
   });

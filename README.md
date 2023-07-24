@@ -1,11 +1,12 @@
 # The Memory Game
-1.One Player game against the computer. 
-2.You match the cards.
-3.After 10 lifes, you lose! 
+    1. One Player game against the computer or two players with higher # of life wins! 
+    2. You match the cards.
+    3. After 10 lifes, you lose!
+    
 
 ## Live Game Play
-https://killdakitty.github.io/TheMemoryGame/
 
+https://killdakitty.github.io/TheMemoryGame/
 
 ## Tech Stack
     1. HTML
@@ -16,13 +17,13 @@ https://killdakitty.github.io/TheMemoryGame/
     colorful
     kid-friendly
     time delay once clicked
-    
 
 ## Challenge
-once i click the second image, i can still reclick on it even though the clicker was disabled. I played around the with the code and fixed it. 
 
+once i click the second image, i can still reclick on it even though the clicker was disabled. I played around the with the code and fixed it.
 
-## Resources 
+## Resources
+
     Youtube:
     https://www.youtube.com/watch?v=DABkhfsBAWw
     https://www.youtube.com/watch?v=dqqxkrKhfS4
