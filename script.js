@@ -1,18 +1,16 @@
 //starting with 10 lives, you can change to whatever live you like
 let playerLives = 10;
 const section = document.querySelector("section");
-const button = document.querySelector("button");
+const button = document.querySelector("button"); //restart
 const playerLivesCount = document.querySelector("span");
-
 
 //link text for playerlives
 playerLivesCount.textContent = playerLives;
 
-//button of restarting 
+//button of restarting
 button.addEventListener("click", function (e) {
   restart("Restarting!");
 });
-
 
 //we generate card options
 const getData = () => [
@@ -44,7 +42,7 @@ const randomize = () => {
   return cardData; //returns the new randomized data
 };
 
-//Card Generator Function 
+//Card Generator Function
 const cardGenerator = () => {
   const cardData = randomize();
 
@@ -66,87 +64,83 @@ const cardGenerator = () => {
     card.appendChild(face);
     card.appendChild(back);
 
-card.addEventListener("click", handleClick);
-
-   
+    card.addEventListener("click", handleClick);
   });
 };
 
 function handleClick(e) {
-    this.classList.toggle("toggleCard");
-    checkCards(e);
-  }
-  
-  
-  // check cards
-  const checkCards = (e) => {
-      console.log(e);
-      const clickedCard = e.target; //when we click on the target
-      clickedCard.classList.add("flipped"); //adding flipped to clickedcard
-      const flippedCards = document.querySelectorAll(".flipped");
-      const toggleCard = document.querySelectorAll(".toggleCard");
-  
-      
-      console.log(clickedCard);
-      console.log(flippedCards);
-  
-    
-      //logic of the Game
-    if (flippedCards.length === 2) {
-      if (
-        flippedCards[0].getAttribute("name") ===
-        flippedCards[1].getAttribute("name")
-      ) {
-        console.log("Matched!");
-        flippedCards.forEach((card) => {
+  this.classList.toggle("toggleCard");
+  checkCards(e);
+}
+
+//logic of the Game
+// check cards
+const checkCards = (e) => {
+  console.log(e);
+  const clickedCard = e.target; //when we click on the target
+  clickedCard.classList.add("flipped"); //adding flipped to clickedcard
+  const flippedCards = document.querySelectorAll(".flipped");
+  const toggleCard = document.querySelectorAll(".toggleCard");
+
+  console.log(clickedCard);
+  console.log(flippedCards);
+
+  //once a card is flipped, its send to flipped card and once the flipped card has
+  //2 cards, we check to see if the cards match
+  //if it match- we disable the clicker immediately and remove it from the flipped
+  //if its not a match- we flip it back from after 1000miliseconds and remove it from flipped
+
+  if (flippedCards.length === 2) {
+    if (
+      flippedCards[0].getAttribute("name") ===
+      flippedCards[1].getAttribute("name")
+    ) {
+      console.log("Matched!");
+      flippedCards.forEach((card) => {
         //   card.classList.add("disable"); //disable the clicker
-        card.style.pointerEvents='none'; // disable the clicker
+        card.style.pointerEvents = "none"; // disable the clicker
         // once it's fipped and matched, we cant click on it anymore
-        card.classList.remove('flipped');
-          // console.log(flippedCards[0]);
-        })
-        
-      } else {
-        console.log("Try Again!");
-        flippedCards.forEach((card) => {
-          card.classList.remove("flipped");
+        card.classList.remove("flipped");
+        // console.log(flippedCards[0]);
+      });
+    } else {
+      console.log("Try Again!");
+      flippedCards.forEach((card) => {
+        card.classList.remove("flipped");
         //   card.classList.remove("toggleCard");
-          setTimeout(() => card.classList.remove("toggleCard"),1000);
-        });
-        playerLives--;
-        playerLivesCount.textContent = playerLives;
-        if (playerLives === 0) {
-          restart("you LOST! Try Again!");
-        }
+        setTimeout(() => card.classList.remove("toggleCard"), 1000);
+      });
+
+      //loses a life, once the life reach 0, game over
+      playerLives--;
+      playerLivesCount.textContent = playerLives;
+      if (playerLives === 0) {
+        restart("you LOST! Try Again!");
       }
     }
-  
-  
-  
-    //Check to see if you won the Game
-    if (toggleCard.length === 16) {
-      restart("YOU WON!");
-    }
   }
-  
-  
 
+  //Check to see if you won the Game
+  if (toggleCard.length === 16) {
+    restart("YOU WON!");
+  }
+};
 
 //restart
 const restart = (text) => {
   let cardData = randomize();
   let faces = document.querySelectorAll(".face");
   let cards = document.querySelectorAll(".card");
-  section.style.pointerEvents='none';
+  section.style.pointerEvents = "none";
   cardData.forEach((item, index) => {
     cards[index].classList.remove("toggleCard");
-    //randomize 
-    setTimeout(()=>{
-    cards[index].style.pointerEvents = "all"; //add pointevent back
-    faces[index].src = item.imgSrc; //change image
-    cards[index].setAttribute("name", item.name); //add attribute
-    section.style.pointerEvents='all';},1000);
-
+    //randomize
+    setTimeout(() => {
+      cards[index].style.pointerEvents = "all"; //add pointevent back
+      faces[index].src = item.imgSrc; //change image
+      cards[index].setAttribute("name", item.name); //add attribute
+      section.style.pointerEvents = "all";
+    }, 1000);
   });
   playerLives = 10;
   playerLivesCount.textContent = playerLives;

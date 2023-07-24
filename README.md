@@ -1,7 +1,7 @@
 # The Memory Game
-One Player game against the computer. 
-You match the cards.
-After 10 games, you lose! 
+1.One Player game against the computer. 
+2.You match the cards.
+3.After 10 lifes, you lose! 
 
 
 ## Tech Stack
