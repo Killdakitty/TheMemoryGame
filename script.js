@@ -1,10 +1,11 @@
+//starting with 10 lives, you can change to whatever live you like
 let playerLives = 10;
 const section = document.querySelector("section");
 const button = document.querySelector("button");
 const playerLivesCount = document.querySelector("span");
-let matched=[];
 
-//link text
+
+//link text for playerlives
 playerLivesCount.textContent = playerLives;
 
 //button of restarting 
@@ -36,14 +37,14 @@ const getData = () => [
 // getData is stored is Data
 // const data =getData();
 
-// randomize
+// randomize the data and return the randomized data
 const randomize = () => {
   const cardData = getData();
   cardData.sort(() => Math.random() - 0.5); //randomizes the data
   return cardData; //returns the new randomized data
 };
 
-//Card Generator Function
+//Card Generator Function 
 const cardGenerator = () => {
   const cardData = randomize();
 

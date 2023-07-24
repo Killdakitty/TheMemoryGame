@@ -1,15 +1,23 @@
 # The Memory Game
-Game build using the Dom
+One Player game against the computer. 
+You match the cards.
+After 10 games, you lose! 
 
 
 ## Tech Stack
     1. HTML
     2. CSS
-    3.JS
+    3. JS
 
+## Features:
+    colorful
+    kid-friendly
+    time delay once clicked
+    
 
 ## Challenge
-once i click the second image, i can reclick on it even though the clicker was disabled. dont ask my how i fixed. i played with the code for 1 day! 
+once i click the second image, i can still reclick on it even though the clicker was disabled. I played around the with the code and fixed it. 
+
 
 ## Resources 
     Youtube:
